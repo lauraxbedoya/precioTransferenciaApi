@@ -1,6 +1,6 @@
-import { IsNotEmpty, IsEnum, IsNumberString, ValidateIf, NotEquals, IsOptional, IsEmail, IsString, MinLength, Validate } from 'class-validator';
+import { IsNotEmpty, IsEnum, ValidateIf, NotEquals, IsOptional, IsEmail, IsString, MinLength, Validate } from 'class-validator';
 import { UniqueFields } from './unique-fields.guard';
-import { UserRole } from './user.enum';
+import { UserCreatedFrom, UserRole } from './user.enum';
 
 export class UpdateUserDto {
 
@@ -36,17 +36,47 @@ export class CreateUserDto {
   name: string;
 
   @IsString()
+  @MinLength(3)
+  @IsNotEmpty()
+  lastName: string;
+
+  @IsString()
   @IsNotEmpty()
   @IsEmail()
   @Validate(UniqueFields, ['email'])
   email: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   password: string;
 
   @IsEnum(UserRole)
   @IsOptional()
   @IsNotEmpty()
-  role: UserRole;
+  role: UserRole.Customer;
+
+  @IsString()
+  createdFrom: UserCreatedFrom.SignUp;
+}
+
+export class CreateUserShouldDeclareDto {
+
+  @IsString()
+  @MinLength(3)
+  @IsNotEmpty()
+  name: string;
+
+  @IsString()
+  @IsNotEmpty()
+  lastName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @IsEmail()
+  @Validate(UniqueFields, ['email'])
+  email: string;
+
+  @IsString()
+  createdFrom: UserCreatedFrom;
+
 }

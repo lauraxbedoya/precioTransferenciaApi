@@ -1,6 +1,6 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ShouldDeclareAnswers } from "./should-declare-answers.entity";
-import { User } from "./user.entity";
+import { User } from "../../user/entities/user.entity";
 
 @Entity('submissions')
 export class ShouldDeclareSubmissions extends BaseEntity {

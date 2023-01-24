@@ -1,6 +1,6 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import { UserRole } from '../user.enum';
-import { ShouldDeclareSubmissions } from './should-declare-submissions.entity';
+import { UserCreatedFrom, UserRole } from '../user.enum';
+import { ShouldDeclareSubmissions } from '../../should-declare/entities/should-declare-submissions.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -17,7 +17,7 @@ export class User extends BaseEntity {
   @Column({ unique: true, type: 'varchar' })
   email: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', nullable: true })
   password: string;
 
   @Column({ enum: UserRole, default: UserRole.Customer })
@@ -25,6 +25,9 @@ export class User extends BaseEntity {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @Column(({ type: 'varchar', default: UserCreatedFrom.SignUp }))
+  createdFrom: UserCreatedFrom;
 
   @UpdateDateColumn()
   updatedAt: Date;

@@ -37,12 +37,14 @@ export class UserService {
     return this.usersRepo.save({ ...body, password: hash })
   }
 
-  async create(body: CreateUserDto) {
-    const saltOrRounds = 10;
-    const password = body.password;
-    const hash = await bcrypt.hash(password, saltOrRounds);
-
-    return this.usersRepo.save({ ...body, password: hash });
+  async create(user: Partial<User>) {
+    let hash = null;
+    if (user.password) {
+      const saltOrRounds = 10;
+      const password = user.password;
+      hash = await bcrypt.hash(password, saltOrRounds);
+    }
+    return this.usersRepo.save({ ...user, password: hash });
   }
 
   async update(id: number, body: UpdateUserDto) {

@@ -17,3 +17,7 @@ export class ShouldDeclareQuestionOptions extends BaseEntity {
   @Column({ type: 'varchar' })
   option: string;
 }
+
+// verificar si existe el usuario si no existe crearlo
+// crear el submission 
+// respuesats

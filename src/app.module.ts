@@ -6,9 +6,11 @@ import { UsersModule } from './api/user/user.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigService, ConfigModule } from '@nestjs/config';
-import { ShouldDeclareSubmissions } from './api/user/entities/should-declare-submissions.entity';
-import { ShouldDeclareQuestions } from './api/user/entities/should-declare-questions.entity';
-import { ShouldDeclareAnswers } from './api/user/entities/should-declare-answers.entity';
+import { ShouldDeclareSubmissions } from './api/should-declare/entities/should-declare-submissions.entity';
+import { ShouldDeclareQuestions } from './api/should-declare/entities/should-declare-questions.entity';
+import { ShouldDeclareAnswers } from './api/should-declare/entities/should-declare-answers.entity';
+import { ShouldDeclareQuestionOptions } from './api/should-declare/entities/should-declare-question-options.entity';
+import { ShouldDeclareModule } from './api/should-declare/should-declare.module';
 
 @Module({
   controllers: [AppController],
@@ -26,7 +28,7 @@ import { ShouldDeclareAnswers } from './api/user/entities/should-declare-answers
         username: config.get('DB_USERNAME'),
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
-        entities: [User, ShouldDeclareSubmissions, ShouldDeclareQuestions, ShouldDeclareAnswers],
+        entities: [User, ShouldDeclareSubmissions, ShouldDeclareQuestions, ShouldDeclareAnswers, ShouldDeclareQuestionOptions],
         synchronize: true,
       }
     },
@@ -34,6 +36,7 @@ import { ShouldDeclareAnswers } from './api/user/entities/should-declare-answers
   }),
     UsersModule,
     AuthModule,
+    ShouldDeclareModule
   ],
 })
 export class AppModule { }

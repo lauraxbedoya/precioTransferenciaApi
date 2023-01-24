@@ -1,4 +1,4 @@
-import { QuestionType } from "src/api/question/question.enum";
+import { QuestionType } from "src/api/should-declare/question.enum";
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ShouldDeclareAnswers } from "./should-declare-answers.entity";
 import { ShouldDeclareQuestionOptions } from "./should-declare-question-options.entity";

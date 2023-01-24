@@ -3,7 +3,7 @@ import { RolesGuard } from '../guards/roles.guard';
 import { Roles } from '../guards/roles.decorator';
 import { UserService } from '../services/user.service';
 import { CreateUserDto, UpdateUserDto } from '../user.dto';
-import { UserRole } from '../user.enum';
+import { UserCreatedFrom, UserRole } from '../user.enum';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserData } from '../decorators/user.decorator';
 import { User } from '../entities/user.entity';
