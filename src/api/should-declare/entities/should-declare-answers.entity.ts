@@ -3,7 +3,7 @@ import { ShouldDeclareQuestions } from "./should-declare-questions.entity";
 import { ShouldDeclareSubmissions } from "./should-declare-submissions.entity";
 
 @Entity('answers')
-export class ShouldDeclareAnswers extends BaseEntity {
+export class ShouldDeclareAnswer extends BaseEntity {
 
   @PrimaryGeneratedColumn('increment')
   id: number;

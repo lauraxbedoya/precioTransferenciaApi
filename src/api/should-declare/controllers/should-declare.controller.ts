@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { ShouldDeclareService } from "../services/should-declare.service";
 import { CreateShouldDeclareSubmissionDto } from "../should-declare.dto";
 
@@ -7,6 +7,12 @@ export class ShouldDeclareController {
   constructor(
     private shouldDeclareService: ShouldDeclareService,
   ) { }
+
+  @Get()
+  findAllShouldDeclareQuestion() {
+    return this.shouldDeclareService.findAllShouldDeclareQuestion();
+  }
+
 
   @Post('create-submission')
   async createSubmission(@Body() body: CreateShouldDeclareSubmissionDto) {

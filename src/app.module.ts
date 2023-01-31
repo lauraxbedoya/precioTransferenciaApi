@@ -8,7 +8,7 @@ import { AppService } from './app.service';
 import { ConfigService, ConfigModule } from '@nestjs/config';
 import { ShouldDeclareSubmissions } from './api/should-declare/entities/should-declare-submissions.entity';
 import { ShouldDeclareQuestions } from './api/should-declare/entities/should-declare-questions.entity';
-import { ShouldDeclareAnswers } from './api/should-declare/entities/should-declare-answers.entity';
+import { ShouldDeclareAnswer } from './api/should-declare/entities/should-declare-answers.entity';
 import { ShouldDeclareQuestionOptions } from './api/should-declare/entities/should-declare-question-options.entity';
 import { ShouldDeclareModule } from './api/should-declare/should-declare.module';
 
@@ -28,7 +28,7 @@ import { ShouldDeclareModule } from './api/should-declare/should-declare.module'
         username: config.get('DB_USERNAME'),
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
-        entities: [User, ShouldDeclareSubmissions, ShouldDeclareQuestions, ShouldDeclareAnswers, ShouldDeclareQuestionOptions],
+        entities: [User, ShouldDeclareSubmissions, ShouldDeclareQuestions, ShouldDeclareAnswer, ShouldDeclareQuestionOptions],
         synchronize: true,
       }
     },

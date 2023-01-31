@@ -7,24 +7,30 @@ export class UpdateUserDto {
   @IsString()
   @MinLength(3)
   @ValidateIf((object, value) => value !== undefined)
-  name: string;
+  @IsOptional()
+  name?: string;
+
+  @IsString()
+  @MinLength(3)
+  @IsOptional()
+  lastName?: string;
 
   @IsString({ message: 'Debe ser string' })
   @IsEmail()
   @ValidateIf((object, value) => value !== undefined)
   @NotEquals(null)
-  @IsNotEmpty()
-  email: string;
+  @IsOptional()
+  email?: string;
 
   @IsString()
   @IsOptional()
   @ValidateIf((object, value) => value !== undefined)
-  password: string;
+  password?: string;
 
   @IsEnum(UserRole)
   @IsOptional()
   @ValidateIf((object, value) => value !== undefined)
-  role: UserRole;
+  role?: UserRole;
 }
 
 

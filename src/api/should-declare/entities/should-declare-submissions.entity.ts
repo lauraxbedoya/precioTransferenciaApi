@@ -1,5 +1,5 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ShouldDeclareAnswers } from "./should-declare-answers.entity";
+import { ShouldDeclareAnswer } from "./should-declare-answers.entity";
 import { User } from "../../user/entities/user.entity";
 
 @Entity('submissions')
@@ -18,6 +18,6 @@ export class ShouldDeclareSubmissions extends BaseEntity {
   @CreateDateColumn()
   createdAt: Date;
 
-  @OneToMany(() => ShouldDeclareAnswers, (answer) => answer.submission)
-  answers: ShouldDeclareAnswers[];
+  @OneToMany(() => ShouldDeclareAnswer, (answer) => answer.submission)
+  answers: ShouldDeclareAnswer[];
 }
