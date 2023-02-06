@@ -6,11 +6,13 @@ import { jwtConstants } from './constants';
 import { UsersModule } from '../user.module';
 import { LocalStrategy } from './auth.strategy';
 import { JwtStrategy } from './jwt.strategy';
+import { MailModule } from 'src/mail/mail.module';
 
 @Module({
   imports: [
     UsersModule,
     PassportModule,
+    MailModule,
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '100d' },

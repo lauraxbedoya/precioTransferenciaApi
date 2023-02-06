@@ -4,6 +4,7 @@ import { User } from "src/api/user/entities/user.entity";
 import { UserService } from "src/api/user/services/user.service";
 import { CreateUserShouldDeclareDto } from "src/api/user/user.dto";
 import { UserCreatedFrom } from "src/api/user/user.enum";
+import { MailService } from "src/mail/mail.service";
 import { Repository } from "typeorm";
 import { ShouldDeclareAnswer } from "../entities/should-declare-answers.entity";
 import { ShouldDeclareQuestions } from "../entities/should-declare-questions.entity";
@@ -23,6 +24,7 @@ export class ShouldDeclareService {
     private userRepo: Repository<User>,
 
     private userService: UserService,
+    private mailService: MailService
   ) { }
 
   async createSubmission(user: CreateUserShouldDeclareDto): Promise<ShouldDeclareSubmissions> {
@@ -50,6 +52,17 @@ export class ShouldDeclareService {
 
       this.submissionAnswerRepo.save(submissionAnswer);
     }
+  }
+
+  async sendEmailSubmissionAnswer(user: CreateUserShouldDeclareDto, answers: CreateShouldDeclareSubmissionQuestionAnswersDto[]) {
+    const questions = await this.findAllShouldDeclareQuestion();
+
+    const questionsAnswers = [];
+    for (let i = 0; i < answers.length; i++) {
+      const question = questions.find((ques) => ques.id === answers[i].questionId);
+      questionsAnswers.push({ question: question.question, answer: answers[i].answer });
+    }
+    this.mailService.sendUserConfirmation(user, questionsAnswers);
   }
 
   findAllShouldDeclareQuestion() {

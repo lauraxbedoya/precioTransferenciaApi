@@ -7,7 +7,7 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(
     private usersService: UserService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) { }
 
   async validateUser(email: string, pass: string): Promise<any> {
@@ -24,7 +24,6 @@ export class AuthService {
 
   async login(user: any) {
     const payload = { email: user.email, sub: user.id };
-
     return this.jwtService.sign(payload);
   }
 }

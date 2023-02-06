@@ -1,0 +1,14 @@
+<p><b>Usuario</b>
+  <br />
+  {{name}} {{lastName}}
+</p>
+<p>{{email}}</p>
+
+<span>
+  {{#each answers}}
+  <span><b>- {{this.question}}</b></span>
+  <br />
+  <span style="color: brown; text-transform: capitalize">{{this.answer}}</span>
+  <br />
+  {{/each}}
+</span>

@@ -9,8 +9,9 @@ import { CreateUserDto, UpdateUserDto } from '../user.dto';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private usersRepo: Repository<User>
+    private usersRepo: Repository<User>,
   ) { }
+
 
   findAll() {
     return this.usersRepo.find();

@@ -84,5 +84,4 @@ export class CreateUserShouldDeclareDto {
 
   @IsString()
   createdFrom: UserCreatedFrom;
-
 }

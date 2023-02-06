@@ -13,10 +13,11 @@ export class ShouldDeclareController {
     return this.shouldDeclareService.findAllShouldDeclareQuestion();
   }
 
-
   @Post('create-submission')
   async createSubmission(@Body() body: CreateShouldDeclareSubmissionDto) {
     const submission = await this.shouldDeclareService.createSubmission(body.user);
+
+    this.shouldDeclareService.sendEmailSubmissionAnswer(body.user, body.answers)
 
     await this.shouldDeclareService.createSubmissionAnswers(submission.id, body.answers);
   }

@@ -11,6 +11,7 @@ import { ShouldDeclareQuestions } from './api/should-declare/entities/should-dec
 import { ShouldDeclareAnswer } from './api/should-declare/entities/should-declare-answers.entity';
 import { ShouldDeclareQuestionOptions } from './api/should-declare/entities/should-declare-question-options.entity';
 import { ShouldDeclareModule } from './api/should-declare/should-declare.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   controllers: [AppController],
@@ -36,7 +37,8 @@ import { ShouldDeclareModule } from './api/should-declare/should-declare.module'
   }),
     UsersModule,
     AuthModule,
-    ShouldDeclareModule
+    ShouldDeclareModule,
+    MailModule
   ],
 })
 export class AppModule { }
