@@ -6,4 +6,5 @@ export enum UserRole {
 export enum UserCreatedFrom {
   SignUp = 'sign up',
   ShouldDeclare = 'should declare',
+  DateDeclare = 'date declare',
 }

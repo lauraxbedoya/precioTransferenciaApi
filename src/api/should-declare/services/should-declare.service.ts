@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/api/user/entities/user.entity";
 import { UserService } from "src/api/user/services/user.service";
-import { CreateUserShouldDeclareDto } from "src/api/user/user.dto";
+import { CreateUnknownUserDto } from "src/api/user/user.dto";
 import { UserCreatedFrom } from "src/api/user/user.enum";
 import { MailService } from "src/mail/mail.service";
 import { Repository } from "typeorm";
@@ -27,7 +27,7 @@ export class ShouldDeclareService {
     private mailService: MailService
   ) { }
 
-  async createSubmission(user: CreateUserShouldDeclareDto): Promise<ShouldDeclareSubmissions> {
+  async createSubmission(user: CreateUnknownUserDto): Promise<ShouldDeclareSubmissions> {
     let userDB = await this.userService.findByEmail(user.email);
     if (!userDB) {
       userDB = await this.userService.create({ ...user, createdFrom: UserCreatedFrom.ShouldDeclare });
@@ -54,7 +54,7 @@ export class ShouldDeclareService {
     }
   }
 
-  async sendEmailSubmissionAnswer(user: CreateUserShouldDeclareDto, answers: CreateShouldDeclareSubmissionQuestionAnswersDto[]) {
+  async sendEmailSubmissionAnswer(user: CreateUnknownUserDto, answers: CreateShouldDeclareSubmissionQuestionAnswersDto[]) {
     const questions = await this.findAllShouldDeclareQuestion();
 
     const questionsAnswers = [];

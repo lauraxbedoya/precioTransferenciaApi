@@ -2,7 +2,7 @@ import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, On
 import { ShouldDeclareAnswer } from "./should-declare-answers.entity";
 import { User } from "../../user/entities/user.entity";
 
-@Entity('submissions')
+@Entity('should-declare-submissions')
 export class ShouldDeclareSubmissions extends BaseEntity {
 
   @PrimaryGeneratedColumn('increment')

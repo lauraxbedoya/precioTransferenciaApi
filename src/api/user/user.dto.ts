@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsEnum, ValidateIf, NotEquals, IsOptional, IsEmail, IsString, MinLength, Validate } from 'class-validator';
+import { IsNotEmpty, IsEnum, ValidateIf, NotEquals, IsOptional, IsEmail, IsString, MinLength, Validate, IsNumber, Length } from 'class-validator';
 import { UniqueFields } from './unique-fields.guard';
 import { UserCreatedFrom, UserRole } from './user.enum';
 
@@ -65,7 +65,7 @@ export class CreateUserDto {
   createdFrom: UserCreatedFrom.SignUp;
 }
 
-export class CreateUserShouldDeclareDto {
+export class CreateUnknownUserDto {
 
   @IsString()
   @MinLength(3)

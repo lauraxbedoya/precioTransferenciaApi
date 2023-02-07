@@ -1,10 +1,10 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { CreateUserShouldDeclareDto } from "../user/user.dto";
+import { CreateUnknownUserDto } from "../user/user.dto";
 
 export class CreateShouldDeclareSubmissionDto {
 
   @IsNotEmpty()
-  user: CreateUserShouldDeclareDto;
+  user: CreateUnknownUserDto;
 
   @IsNotEmpty()
   answers: CreateShouldDeclareSubmissionQuestionAnswersDto[];

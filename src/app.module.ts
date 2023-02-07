@@ -12,6 +12,8 @@ import { ShouldDeclareAnswer } from './api/should-declare/entities/should-declar
 import { ShouldDeclareQuestionOptions } from './api/should-declare/entities/should-declare-question-options.entity';
 import { ShouldDeclareModule } from './api/should-declare/should-declare.module';
 import { MailModule } from './mail/mail.module';
+import { StatementDateRequestModule } from './api/statement-date-request/statement-date-request.module';
+import { StatementDateRequest } from './api/statement-date-request/entities/statement-date-request';
 
 @Module({
   controllers: [AppController],
@@ -29,7 +31,14 @@ import { MailModule } from './mail/mail.module';
         username: config.get('DB_USERNAME'),
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
-        entities: [User, ShouldDeclareSubmissions, ShouldDeclareQuestions, ShouldDeclareAnswer, ShouldDeclareQuestionOptions],
+        entities: [
+          User,
+          ShouldDeclareSubmissions,
+          ShouldDeclareQuestions,
+          ShouldDeclareAnswer,
+          ShouldDeclareQuestionOptions,
+          StatementDateRequest,
+        ],
         synchronize: true,
       }
     },
@@ -38,7 +47,8 @@ import { MailModule } from './mail/mail.module';
     UsersModule,
     AuthModule,
     ShouldDeclareModule,
-    MailModule
+    MailModule,
+    StatementDateRequestModule,
   ],
 })
 export class AppModule { }
