@@ -1,9 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { User } from "src/api/user/entities/user.entity";
-import { UserService } from "src/api/user/services/user.service";
 import { CreateUnknownUserDto } from "src/api/user/user.dto";
-import { UserCreatedFrom } from "src/api/user/user.enum";
 import { MailService } from "src/mail/mail.service";
 import { Repository } from "typeorm";
 import { ShouldDeclareAnswer } from "../entities/should-declare-answers.entity";
@@ -20,26 +17,13 @@ export class ShouldDeclareService {
     private questionRepo: Repository<ShouldDeclareQuestions>,
     @InjectRepository(ShouldDeclareAnswer)
     private submissionAnswerRepo: Repository<ShouldDeclareAnswer>,
-    @InjectRepository(User)
-    private userRepo: Repository<User>,
 
-    private userService: UserService,
     private mailService: MailService
   ) { }
 
-  async createSubmission(user: CreateUnknownUserDto): Promise<ShouldDeclareSubmissions> {
-    let userDB = await this.userService.findByEmail(user.email);
-    if (!userDB) {
-      userDB = await this.userService.create({ ...user, createdFrom: UserCreatedFrom.ShouldDeclare });
-    } else {
-      if (userDB.name !== user.name || userDB.lastName !== user.lastName) {
-        const userUpdate = await this.userService.update(userDB.id, { name: user.name, lastName: user.lastName })
-        this.userRepo.save(userUpdate)
-      }
-    }
-
+  async createSubmission(userId: number): Promise<ShouldDeclareSubmissions> {
     const newSubmission = new ShouldDeclareSubmissions();
-    newSubmission.userId = userDB.id;
+    newSubmission.userId = userId;
     return this.submissionRepo.save(newSubmission);
   }
 

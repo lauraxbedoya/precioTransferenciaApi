@@ -14,6 +14,7 @@ import { ShouldDeclareModule } from './api/should-declare/should-declare.module'
 import { MailModule } from './mail/mail.module';
 import { StatementDateRequestModule } from './api/statement-date-request/statement-date-request.module';
 import { StatementDateRequest } from './api/statement-date-request/entities/statement-date-request';
+import { StatementMaxDate } from './api/statement-date-request/entities/statement-max-dates';
 
 @Module({
   controllers: [AppController],
@@ -38,6 +39,7 @@ import { StatementDateRequest } from './api/statement-date-request/entities/stat
           ShouldDeclareAnswer,
           ShouldDeclareQuestionOptions,
           StatementDateRequest,
+          StatementMaxDate,
         ],
         synchronize: true,
       }

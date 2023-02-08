@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
+import { ShouldDeclareSubmissions } from "../entities/should-declare-submissions.entity";
 import { ShouldDeclareService } from "../services/should-declare.service";
-import { CreateShouldDeclareSubmissionDto } from "../should-declare.dto";
 
 @Controller('should-declare')
 export class ShouldDeclareController {
@@ -14,8 +14,8 @@ export class ShouldDeclareController {
   }
 
   @Post('create-submission')
-  async createSubmission(@Body() body: CreateShouldDeclareSubmissionDto) {
-    const submission = await this.shouldDeclareService.createSubmission(body.user);
+  async createSubmission(@Body() body: ShouldDeclareSubmissions) {
+    const submission = await this.shouldDeclareService.createSubmission(body.userId);
 
     this.shouldDeclareService.sendEmailSubmissionAnswer(body.user, body.answers)
 
