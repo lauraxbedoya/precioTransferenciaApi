@@ -3,14 +3,16 @@ import { RolesGuard } from '../guards/roles.guard';
 import { Roles } from '../guards/roles.decorator';
 import { UserService } from '../services/user.service';
 import { CreateUserDto, UpdateUserDto } from '../user.dto';
-import { UserCreatedFrom, UserRole } from '../user.enum';
+import { UserRole } from '../user.enum';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserData } from '../decorators/user.decorator';
 import { User } from '../entities/user.entity';
 
 @Controller('users')
 export class UserController {
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+  ) { }
 
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)

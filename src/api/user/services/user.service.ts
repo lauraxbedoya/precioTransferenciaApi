@@ -4,7 +4,6 @@ import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { CreateUnknownUserDto, CreateUserDto, UpdateUserDto } from '../user.dto';
-import { UserCreatedFrom } from '../user.enum';
 
 @Injectable()
 export class UserService {
@@ -17,7 +16,7 @@ export class UserService {
   async findUpdateOrCreate(user: CreateUnknownUserDto) {
     let userDB = await this.findByEmail(user.email);
     if (!userDB) {
-      userDB = await this.create({ ...user, createdFrom: UserCreatedFrom.DateDeclare });
+      userDB = await this.create(user);
     } else {
       if (userDB.name !== user.name || userDB.lastName !== user.lastName) {
         const userUpdate = await this.update(userDB.id, { name: user.name, lastName: user.lastName })
@@ -61,6 +60,7 @@ export class UserService {
     }
     return this.userRepo.save({ ...user, password: hash });
   }
+
 
   async update(id: number, body: UpdateUserDto) {
     const currentUser = await this.userRepo.findOneBy({ id });

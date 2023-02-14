@@ -58,11 +58,10 @@ export class CreateUserDto {
 
   @IsEnum(UserRole)
   @IsOptional()
-  @IsNotEmpty()
-  role: UserRole.Customer;
+  role: UserRole;
 
   @IsString()
-  createdFrom: UserCreatedFrom.SignUp;
+  createdFrom: UserCreatedFrom;
 }
 
 export class CreateUnknownUserDto {
@@ -81,6 +80,18 @@ export class CreateUnknownUserDto {
   @IsEmail()
   @Validate(UniqueFields, ['email'])
   email: string;
+
+  @IsString()
+  @IsOptional()
+  photoUrl?: string;
+
+  @IsString()
+  @IsOptional()
+  phoneNumber?: string | null;
+
+  @IsString()
+  @IsOptional()
+  googleId?: string;
 
   @IsString()
   createdFrom: UserCreatedFrom;

@@ -21,6 +21,15 @@ export class User extends BaseEntity {
   @Column({ type: 'varchar', nullable: true })
   password: string;
 
+  @Column({ type: 'varchar', nullable: true })
+  photoUrl: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  phoneNumber: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  googleId: string;
+
   @Column({ enum: UserRole, default: UserRole.Customer })
   role: UserRole;
 

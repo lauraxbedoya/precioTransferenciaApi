@@ -4,7 +4,8 @@ export enum UserRole {
 }
 
 export enum UserCreatedFrom {
-  SignUp = 'sign up',
-  ShouldDeclare = 'should declare',
-  DateDeclare = 'date declare',
+  SignUp = 'sign_up',
+  ShouldDeclare = 'should_declare',
+  DateDeclare = 'date_declare',
+  GoogleSignIn = 'google_sign_in'
 }
