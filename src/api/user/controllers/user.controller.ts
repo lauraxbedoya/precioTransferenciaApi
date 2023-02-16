@@ -7,11 +7,13 @@ import { UserRole } from '../user.enum';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UserData } from '../decorators/user.decorator';
 import { User } from '../entities/user.entity';
+import { MailService } from 'src/mail/mail.service';
 
 @Controller('users')
 export class UserController {
   constructor(
     private userService: UserService,
+    private mailService: MailService,
   ) { }
 
   @Get()
@@ -45,7 +47,8 @@ export class UserController {
   }
 
   @Post()
-  create(@Body() body: CreateUserDto) {
+  async create(@Body() body: CreateUserDto) {
+    await this.mailService.sendRegistrationConfirmed(body);
     return this.userService.create({ ...body, role: UserRole.Customer });
   }
 

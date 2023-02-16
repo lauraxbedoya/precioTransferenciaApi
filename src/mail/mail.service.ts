@@ -24,6 +24,7 @@ export class MailService {
     });
   }
 
+
   async sendStatementEmail(user: Partial<User>, statementMaxDate: StatementMaxDate) {
 
     await this.mailerService.sendMail({
@@ -34,6 +35,19 @@ export class MailService {
         name: user.name,
         lastName: user.lastName,
         statementMaxDate
+      },
+    })
+  }
+
+
+  async sendRegistrationConfirmed(user: Partial<User>) {
+
+    await this.mailerService.sendMail({
+      to: 'laura.bedoya194@gmail.com',
+      subject: `${user.name}, Bienvenid@ a PrecioTransferencia`,
+      template: './confirmation-user-registered',
+      context: {
+        name: user.name,
       },
     })
   }

@@ -56,6 +56,10 @@ export class CreateUserDto {
   @IsOptional()
   password: string;
 
+  @IsString()
+  @IsOptional()
+  phoneNumber: string;
+
   @IsEnum(UserRole)
   @IsOptional()
   role: UserRole;
