@@ -2,6 +2,7 @@ import { BaseEntity, Column, CreateDateColumn, Entity, OneToMany, PrimaryGenerat
 import { UserCreatedFrom, UserRole } from '../user.enum';
 import { ShouldDeclareSubmissions } from '../../should-declare/entities/should-declare-submissions.entity';
 import { StatementDateRequest } from 'src/api/statement-date-request/entities/statement-date-request';
+import { UserCompany } from './user-company.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -47,4 +48,7 @@ export class User extends BaseEntity {
 
   @OneToMany(() => StatementDateRequest, (date) => date.user)
   dateDeclare: StatementDateRequest[];
+
+  @OneToMany(() => UserCompany, (userCompany) => userCompany.user)
+  companies: UserCompany[];
 }

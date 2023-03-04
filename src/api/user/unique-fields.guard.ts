@@ -5,7 +5,10 @@ import { Repository } from "typeorm";
 import { User } from "./entities/user.entity";
 import { UserCreatedFrom } from "./user.enum";
 
-@ValidatorConstraint({ name: 'UniqueFields', async: true })
+@ValidatorConstraint({
+  // name: 'UniqueFields',
+  async: true
+})
 @Injectable()
 export class UniqueFields implements ValidatorConstraintInterface {
 

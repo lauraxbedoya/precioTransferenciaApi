@@ -1,4 +1,3 @@
-import { QuestionType } from "src/api/should-declare/question.enum";
 import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ShouldDeclareAnswer } from "./should-declare-answers.entity";
 import { ShouldDeclareQuestionOptions } from "./should-declare-question-options.entity";
@@ -18,8 +17,8 @@ export class ShouldDeclareQuestions extends BaseEntity {
   @Column({ type: 'varchar', nullable: true })
   icon: string;
 
-  @Column({ enum: QuestionType, nullable: true })
-  type: QuestionType;
+  @Column({ type: 'varchar', nullable: false })
+  letterId: string;
 
   @Column({ type: 'number', nullable: true })
   parentQuestionId: number;

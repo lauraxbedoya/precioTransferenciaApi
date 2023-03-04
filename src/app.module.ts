@@ -15,6 +15,7 @@ import { MailModule } from './mail/mail.module';
 import { StatementDateRequestModule } from './api/statement-date-request/statement-date-request.module';
 import { StatementDateRequest } from './api/statement-date-request/entities/statement-date-request';
 import { StatementMaxDate } from './api/statement-date-request/entities/statement-max-dates';
+import { UserCompany } from './api/user/entities/user-company.entity';
 
 @Module({
   controllers: [AppController],
@@ -34,6 +35,7 @@ import { StatementMaxDate } from './api/statement-date-request/entities/statemen
         database: config.get('DB_NAME'),
         entities: [
           User,
+          UserCompany,
           ShouldDeclareSubmissions,
           ShouldDeclareQuestions,
           ShouldDeclareAnswer,

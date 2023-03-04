@@ -1,7 +1,9 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { MailService } from "src/mail/mail.service";
+import { UserCompany } from "../user/entities/user-company.entity";
 import { User } from "../user/entities/user.entity";
+import { UserCompanyService } from "../user/services/user-company.service";
 import { UserService } from "../user/services/user.service";
 import { ShouldDeclareController } from "./controllers/should-declare.controller";
 import { ShouldDeclareAnswer } from "./entities/should-declare-answers.entity";
@@ -12,9 +14,9 @@ import { ShouldDeclareService } from "./services/should-declare.service";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User, ShouldDeclareAnswer, ShouldDeclareQuestionOptions, ShouldDeclareQuestions, ShouldDeclareSubmissions]),
+    TypeOrmModule.forFeature([User, UserCompany, ShouldDeclareAnswer, ShouldDeclareQuestionOptions, ShouldDeclareQuestions, ShouldDeclareSubmissions]),
   ],
-  providers: [ShouldDeclareService, UserService, MailService],
+  providers: [ShouldDeclareService, UserService, MailService, UserCompanyService],
   controllers: [ShouldDeclareController],
   exports: [ShouldDeclareService]
 })

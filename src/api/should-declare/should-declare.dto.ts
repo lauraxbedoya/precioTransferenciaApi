@@ -4,6 +4,9 @@ import { CreateUnknownUserDto } from "../user/user.dto";
 export class CreateShouldDeclareSubmissionDto {
 
   @IsNotEmpty()
+  nit: string;
+
+  @IsNotEmpty()
   user: CreateUnknownUserDto;
 
   @IsNotEmpty()

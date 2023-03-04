@@ -15,8 +15,8 @@ export class MailService {
       subject: 'Se ha realizado una nueva solicitud "Aplica a la obligación"',
       template: './confirmation',
       context: {
-        name: user.name,
-        lastName: user.lastName,
+        // name: user.name,
+        // lastName: user.lastName,
         email: user.email,
         user,
         answers
@@ -32,8 +32,8 @@ export class MailService {
       subject: 'Se ha realizado una nueva solicitud "Fechas para declarar renta"',
       template: './confirmation-date-request',
       context: {
-        name: user.name,
-        lastName: user.lastName,
+        // name: user.name,
+        // lastName: user.lastName,
         statementMaxDate
       },
     })
@@ -44,10 +44,10 @@ export class MailService {
 
     await this.mailerService.sendMail({
       to: 'laura.bedoya194@gmail.com',
-      subject: `${user.name}, Bienvenid@ a PrecioTransferencia`,
+      subject: `Bienvenid@ a PrecioTransferencia`,
       template: './confirmation-user-registered',
       context: {
-        name: user.name,
+        email: user.email,
       },
     })
   }

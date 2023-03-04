@@ -6,7 +6,9 @@ import { Repository } from "typeorm";
 import { ShouldDeclareAnswer } from "../entities/should-declare-answers.entity";
 import { ShouldDeclareQuestions } from "../entities/should-declare-questions.entity";
 import { ShouldDeclareSubmissions } from "../entities/should-declare-submissions.entity";
+import { ResultMessage } from "../question.enum";
 import { CreateShouldDeclareSubmissionQuestionAnswersDto } from "../should-declare.dto";
+
 
 @Injectable()
 export class ShouldDeclareService {
@@ -35,6 +37,32 @@ export class ShouldDeclareService {
       submissionAnswer.answer = answers[i].answer;
 
       this.submissionAnswerRepo.save(submissionAnswer);
+    }
+  }
+
+  async getResult(answers: CreateShouldDeclareSubmissionQuestionAnswersDto[]) {
+    const questions = await this.findAllShouldDeclareQuestion();
+
+    const questionsAnswers: any = {};
+
+    for (let i = 0; i < answers.length; i++) {
+      const question = questions.find((ques) => ques.id === answers[i].questionId);
+      questionsAnswers[question.letterId] = answers[i].answer;
+    }
+
+
+    if ((questionsAnswers.A === 'si' || questionsAnswers.B === 'si') && (questionsAnswers.C === 'no' || questionsAnswers.D === 'no')) {
+      return ResultMessage.Message2;
+    } else if ((questionsAnswers.A === 'si' || questionsAnswers.B === 'si') && (questionsAnswers.C === 'si' || questionsAnswers.D === 'si')) {
+      return ResultMessage.Message1;
+    } else if ((questionsAnswers.A === 'no' || questionsAnswers.B === 'no') && questionsAnswers.C === 'si' && questionsAnswers.D === 'no') {
+      return ResultMessage.Message2;
+    } else if ((questionsAnswers.A === 'no' || questionsAnswers.B === 'no') && questionsAnswers.C === 'no' && questionsAnswers.D === 'si') {
+      return ResultMessage.Message1;
+    } else if ((questionsAnswers.A === 'no' || questionsAnswers.B === 'no') && questionsAnswers.C === 'no' && questionsAnswers.D === 'no') {
+      return ResultMessage.Message2;
+    } else {
+      return ResultMessage.Message1;
     }
   }
 

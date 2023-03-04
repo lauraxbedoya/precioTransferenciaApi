@@ -36,15 +36,15 @@ export class UpdateUserDto {
 
 export class CreateUserDto {
 
-  @IsString()
-  @MinLength(3)
-  @IsNotEmpty()
-  name: string;
+  // @IsString()
+  // @MinLength(3)
+  // @IsNotEmpty()
+  // name: string;
 
-  @IsString()
-  @MinLength(3)
-  @IsNotEmpty()
-  lastName: string;
+  // @IsString()
+  // @MinLength(3)
+  // @IsNotEmpty()
+  // lastName: string;
 
   @IsString()
   @IsNotEmpty()
@@ -56,9 +56,9 @@ export class CreateUserDto {
   @IsOptional()
   password: string;
 
-  @IsString()
-  @IsOptional()
-  phoneNumber: string;
+  // @IsString()
+  // @IsOptional()
+  // phoneNumber: string;
 
   @IsEnum(UserRole)
   @IsOptional()
@@ -85,13 +85,13 @@ export class CreateUnknownUserDto {
   @Validate(UniqueFields, ['email'])
   email: string;
 
-  @IsString()
-  @IsOptional()
-  photoUrl?: string;
+  // @IsString()
+  // @IsOptional()
+  // photoUrl?: string;
 
-  @IsString()
-  @IsOptional()
-  phoneNumber?: string | null;
+  // @IsString()
+  // @IsOptional()
+  // phoneNumber?: string | null;
 
   @IsString()
   @IsOptional()
