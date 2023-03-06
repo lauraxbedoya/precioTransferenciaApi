@@ -1,9 +1,18 @@
-import { IsNotEmpty, IsEnum, ValidateIf, NotEquals, IsOptional, IsEmail, IsString, MinLength, Validate, IsNumber, Length } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsEnum,
+  ValidateIf,
+  NotEquals,
+  IsOptional,
+  IsEmail,
+  IsString,
+  MinLength,
+  Validate,
+} from 'class-validator';
 import { UniqueFields } from './unique-fields.guard';
 import { UserCreatedFrom, UserRole } from './user.enum';
 
 export class UpdateUserDto {
-
   @IsString()
   @MinLength(3)
   @ValidateIf((object, value) => value !== undefined)
@@ -33,18 +42,16 @@ export class UpdateUserDto {
   role?: UserRole;
 }
 
-
 export class CreateUserDto {
+  @IsString()
+  @MinLength(3)
+  @IsNotEmpty()
+  name: string;
 
-  // @IsString()
-  // @MinLength(3)
-  // @IsNotEmpty()
-  // name: string;
-
-  // @IsString()
-  // @MinLength(3)
-  // @IsNotEmpty()
-  // lastName: string;
+  @IsString()
+  @MinLength(3)
+  @IsNotEmpty()
+  lastName: string;
 
   @IsString()
   @IsNotEmpty()
@@ -69,7 +76,6 @@ export class CreateUserDto {
 }
 
 export class CreateUnknownUserDto {
-
   @IsString()
   @MinLength(3)
   @IsNotEmpty()
